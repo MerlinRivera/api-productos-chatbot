@@ -32,3 +32,10 @@ def api_buscar():
 
 # Ejecutar en Replit
 app.run(host='0.0.0.0', port=3000)
+@app.route("/buscar-producto", methods=["POST"])
+def api_buscar():
+    data = request.json
+    print("🔍 Mensaje recibido:", data)  # <-- ESTA LÍNEA
+    pregunta = data.get("pregunta", "")
+    respuesta = buscar_producto(pregunta)
+    return jsonify({"respuesta": respuesta})
